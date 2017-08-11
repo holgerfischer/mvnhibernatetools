@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+    <schema-selection match-schema="public" />
+    <type-mapping>
+        <!-- order is very important specific cases first everything without decimal
+            digits should be mapped to long -->
+
+        <sql-type jdbc-type="NUMERIC" hibernate-type="int" not-null="true"
+                  scale="0" precision="3">
+        </sql-type>
+        <sql-type jdbc-type="NUMERIC" hibernate-type="int" not-null="true"
+                  scale="0" precision="4">
+        </sql-type>
+        <sql-type jdbc-type="NUMERIC" hibernate-type="Integer"
+                  not-null="false" scale="0" precision="4">
+        </sql-type>
+        <sql-type jdbc-type="NUMERIC" hibernate-type="Integer"
+                  not-null="false" scale="0" precision="3">
+        </sql-type>
+        <sql-type jdbc-type="NUMERIC" hibernate-type="int" not-null="true"
+                  scale="0" precision="8">
+        </sql-type>
+        <sql-type jdbc-type="NUMERIC" hibernate-type="Integer"
+                  not-null="false" scale="0" precision="8">
+        </sql-type>
+        <sql-type jdbc-type="NUMERIC" hibernate-type="long" not-null="true"
+                  scale="0">
+        </sql-type>
+        <sql-type jdbc-type="NUMERIC" hibernate-type="Long" scale="0"
+                  not-null="false">
+        </sql-type>
+        <sql-type jdbc-type="NUMERIC" hibernate-type="double"
+                  not-null="true">
+        </sql-type>
+        <sql-type jdbc-type="NUMERIC" hibernate-type="Double"
+                  not-null="false">
+        </sql-type>
+        <sql-type jdbc-type="DATE" hibernate-type="java.time.LocalDate">
+        </sql-type>
+        <sql-type jdbc-type="TIMESTAMP" hibernate-type="java.time.Instant">
+        </sql-type>
+    </type-mapping>
+    <table-filter match-name="md.*" match-schema="public" package="de.hf.dac.marketdataprovider.api.domain"/>
+
+
+    <table schema="public" name="md_endofdayprice" class="de.hf.dac.marketdataprovider.api.domain.EndOfDayPrice">
+        <primary-key>
+            <generator class="identity"></generator>
+        </primary-key>
+    </table>
+
+    <table schema="public" name="md_instrument" class="de.hf.dac.marketdataprovider.api.domain.Instrument">
+        <primary-key>
+            <generator class="identity"></generator>
+        </primary-key>
+    </table>
+
+    <table schema="public" name="md_product" class="de.hf.dac.marketdataprovider.api.domain.Product">
+        <primary-key>
+            <generator class="identity"></generator>
+        </primary-key>
+    </table>
+
+
+</hibernate-reverse-engineering>

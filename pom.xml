@@ -1,0 +1,110 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.hf.dac</groupId>
+    <artifactId>database</artifactId>
+	<version>1.0.0</version>
+	<properties>
+        <hibernate.version>5.2.5.Final</hibernate.version>
+		<hibernate-annotations.version>5.0.1.Final</hibernate-annotations.version>
+		<!--<hibernate.version>4.3.5.Final</hibernate.version>
+		<hibernate-annotations.version>4.0.5.Final</hibernate-annotations.version>-->
+		<postgresql.version>9.4-1203-jdbc42</postgresql.version>
+	</properties>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution> <!--start with mvn antrun:run@dachbm2java -->
+                        <id>hbm2java</id>
+                        <phase>none</phase>
+                        <configuration>
+                            <target>
+                                <echo message="Start generating entities .."/>
+                                <taskdef name="hibernatetool"
+                                         classname="org.hibernate.tool.ant.HibernateToolTask"/>
+                                <hibernatetool
+                                        destdir="src/main/java">
+                                    <jdbcconfiguration
+                                            revengfile="src/main/reveng/hibernate.reveng.xml"
+                                            packagename="de.hf.dac.api.io.domain"
+                                            detectmanytomany="true"
+                                            propertyfile="src/main/reveng/hibernate.reveng.properties"
+                                            />
+                                    <hbm2java  jdk5="true" ejb3="true"/>
+                                </hibernatetool>
+                                <echo message="End generating entities"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.hibernate</groupId>
+                        <artifactId>hibernate-core</artifactId>
+                        <version>${hibernate.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.hibernate</groupId>
+                        <artifactId>hibernate-entitymanager</artifactId>
+                        <version>${hibernate.version}</version>
+                    </dependency>
+					<dependency>
+                        <groupId>org.hibernate</groupId>
+                        <artifactId>hibernate-tools</artifactId>
+                        <version>${hibernate.version}</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>*</groupId>
+                                <artifactId>*</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.hibernate.common</groupId>
+                        <artifactId>hibernate-commons-annotations</artifactId>
+                        <version>${hibernate-annotations.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.hibernate.javax.persistence</groupId>
+                        <artifactId>hibernate-jpa-2.1-api</artifactId>
+                        <version>1.0.0.Final</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax.transaction</groupId>
+                        <artifactId>jta</artifactId>
+                        <version>1.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>freemarker</groupId>
+                        <artifactId>freemarker</artifactId>
+                        <version>2.3.8</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${postgresql.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                        <version>1.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>commons-collections</groupId>
+                        <artifactId>commons-collections</artifactId>
+                        <version>3.2.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
