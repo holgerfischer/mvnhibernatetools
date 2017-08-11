@@ -45,18 +45,6 @@
     <table-filter match-name="md.*" match-schema="public" package="de.hf.dac.marketdataprovider.api.domain"/>
 
 
-    <table schema="public" name="md_endofdayprice" class="de.hf.dac.marketdataprovider.api.domain.EndOfDayPrice">
-        <primary-key>
-            <generator class="identity"></generator>
-        </primary-key>
-    </table>
-
-    <table schema="public" name="md_instrument" class="de.hf.dac.marketdataprovider.api.domain.Instrument">
-        <primary-key>
-            <generator class="identity"></generator>
-        </primary-key>
-    </table>
-
     <table schema="public" name="md_product" class="de.hf.dac.marketdataprovider.api.domain.Product">
         <primary-key>
             <generator class="identity"></generator>
